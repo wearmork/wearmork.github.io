@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MØRK</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 300; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 3rem; border-bottom: 0.5px solid #222; position: sticky; top: 0; background: #000; z-index: 100; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; letter-spacing: 0.3em; color: #C8C8C8; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { color: #888; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: #C8C8C8; }
+  .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; border-bottom: 0.5px solid #111; }
+  .hero::before { content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, #1a1a1a 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .crescent { font-size: 3rem; color: #888; margin-bottom: 1.5rem; animation: pulse 4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 7rem; font-weight: 300; letter-spacing: 0.5em; color: #C8C8C8; line-height: 1; }
+  .hero-sub { font-size: 0.65rem; letter-spacing: 0.4em; color: #555; margin-top: 1.5rem; text-transform: uppercase; }
+  .hero-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #666; margin-top: 3rem; letter-spacing: 0.05em; }
+  .hero-cta { margin-top: 3rem; display: flex; gap: 1.5rem; }
+  .btn-dark { padding: 0.8rem 2.5rem; border: 0.5px solid #444; color: #C8C8C8; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; background: transparent; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+  .btn-dark:hover { background: #111; border-color: #888; }
+  .btn-silver { padding: 0.8rem 2.5rem; border: 0.5px solid #C8C8C8; color: #000; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; background: #C8C8C8; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+  .btn-silver:hover { background: #aaa; }
+  .section-label { font-size: 0.6rem; letter-spacing: 0.4em; color: #444; text-transform: uppercase; text-align: center; padding: 4rem 0 2rem; }
+  .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #111; }
+  .product-card { background: #000; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: background 0.3s; position: relative; overflow: hidden; }
+  .product-card:hover { background: #080808; }
+  .product-icon { font-size: 3rem; margin-bottom: 1.5rem; color: #333; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: #C8C8C8; letter-spacing: 0.15em; }
+  .product-type { font-size: 0.6rem; letter-spacing: 0.3em; color: #555; text-transform: uppercase; margin-top: 0.5rem; }
+  .product-price { font-size: 0.8rem; color: #888; margin-top: 1.5rem; letter-spacing: 0.1em; }
+  .product-tag { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 0.55rem; letter-spacing: 0.2em; color: #555; text-transform: uppercase; }
+  .manifesto { padding: 6rem 3rem; text-align: center; border-top: 0.5px solid #111; border-bottom: 0.5px solid #111; }
+  .manifesto-text { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: #888; line-height: 1.6; max-width: 700px; margin: 0 auto; font-style: italic; }
+  .manifesto-text span { color: #C8C8C8; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 0.5px solid #111; }
+  .stat { padding: 3rem; text-align: center; border-right: 0.5px solid #111; }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: #C8C8C8; font-weight: 300; }
+  .stat-label { font-size: 0.6rem; letter-spacing: 0.25em; color: #444; text-transform: uppercase; margin-top: 0.5rem; }
+  .order { padding: 6rem 3rem; text-align: center; background: #050505; }
+  .order-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: #C8C8C8; letter-spacing: 0.3em; margin-bottom: 1rem; }
+  .order-sub { font-size: 0.65rem; color: #555; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 3rem; }
+  .order-methods { display: flex; justify-content: center; gap: 4rem; margin-top: 3rem; }
+  .order-method { text-align: center; }
+  .order-method-icon { font-size: 1.5rem; color: #444; margin-bottom: 1rem; }
+  .order-method-name { font-size: 0.65rem; letter-spacing: 0.25em; color: #888; text-transform: uppercase; }
+  .order-method-handle { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #C8C8C8; margin-top: 0.3rem; }
+  footer { padding: 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid #111; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; letter-spacing: 0.4em; color: #333; }
+  .footer-copy { font-size: 0.6rem; letter-spacing: 0.15em; color: #333; }
+  .footer-social { font-size: 0.6rem; letter-spacing: 0.2em; color: #444; text-transform: uppercase; }
+  .divider { width: 40px; height: 0.5px; background: #222; margin: 2rem auto; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MØRK</div>
+  <div class="nav-links">
+    <a href="#">Rings</a>
+    <a href="#">Bracelets</a>
+    <a href="#">Chains</a>
+    <a href="#">Order</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="crescent">☽</div>
+  <div class="hero-title">MØRK</div>
+  <div class="hero-sub">Black · Silver · Dark Accessories</div>
+  <div class="divider"></div>
+  <div class="hero-tagline">"It's what you wear when words run out."</div>
+  <div class="hero-cta">
+    <button class="btn-silver" onclick="document.querySelector('.order').scrollIntoView({behavior:'smooth'})">Order Now</button>
+    <button class="btn-dark" onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">View Collection</button>
+  </div>
+</section>
+
+<div class="section-label">— The Collection —</div>
+
+<div class="products">
+  <div class="product-card">
+    <div class="product-tag">New</div>
+    <div class="product-icon">◈</div>
+    <div class="product-name">The Signet</div>
+    <div class="product-type">Black Onyx Ring</div>
+    <div class="product-price">DM for Price · 🇧🇩 BD</div>
+  </div>
+  <div class="product-card">
+    <div class="product-tag">Popular</div>
+    <div class="product-icon">⬡</div>
+    <div class="product-name">The Legacy</div>
+    <div class="product-type">Silver Chain Bracelet</div>
+    <div class="product-price">DM for Price · 🇧🇩 BD</div>
+  </div>
+  <div class="product-card">
+    <div class="product-tag">New</div>
+    <div class="product-icon">⬟</div>
+    <div class="product-name">The Void</div>
+    <div class="product-type">Silver Chain</div>
+    <div class="product-price">DM for Price · 🇧🇩 BD</div>
+  </div>
+</div>
+
+<section class="manifesto">
+  <div class="manifesto-text">
+    Built for those who move different.<br>
+    <span>Cold silver. Pure black.</span><br>
+    Each piece carries weight — not just on your wrist,<br>but in the room.
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">BD</div>
+    <div class="stat-label">All over Bangladesh</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">COD</div>
+    <div class="stat-label">Cash on Delivery</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">🖤</div>
+    <div class="stat-label">Dark by nature</div>
+  </div>
+</div>
+
+<section class="order">
+  <div class="order-title">ORDER</div>
+  <div class="order-sub">Slide into the dark · DM to cop</div>
+  <button class="btn-silver">DM on Instagram</button>
+  <div class="order-methods">
+    <div class="order-method">
+      <div class="order-method-icon">◈</div>
+      <div class="order-method-name">Instagram</div>
+      <div class="order-method-handle">@morkbd</div>
+    </div>
+    <div class="order-method">
+      <div class="order-method-icon">◈</div>
+      <div class="order-method-name">Facebook</div>
+      <div class="order-method-handle">@morkbd</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MØRK</div>
+  <div class="footer-copy">© 2025 MØRK · Bangladesh</div>
+  <div class="footer-social">@morkbd</div>
+</footer>
+
+</body>
+</html>
